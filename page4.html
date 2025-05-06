@@ -1,16 +1,85 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Birthday Card</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Birthday Card</title>
+  <style>
+    body {
+      background: #f5f5ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .card-container {
+      perspective: 1200px;
+    }
+
+    .card {
+      width: 300px;
+      height: 200px;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateY(0deg);
+      transition: transform 1s;
+      cursor: pointer;
+    }
+
+    .card.open {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #3399ff, #0066cc);
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .card-back {
+      background: #ffffff;
+      color: #333;
+      transform: rotateY(180deg);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .card-back p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+  </style>
 </head>
-<body class="page4">
-  <div class="card">
-    <h2>Happy Birthday, Begum!</h2>
-    <p>On your special day, I pray that all your dreams come true and that happiness follows you wherever you go. Even though we're apart right now, my thoughts and heart are always with you. I am so grateful to have you in my life, and I can't wait to share every moment with you. Wishing you a day full of joy, peace, and all the beautiful things life has to offer.</p>
+<body>
+
+<div class="card-container">
+  <div class="card" onclick="this.classList.toggle('open')">
+    <div class="card-front">
+      HAPPY BIRTHDAY 🎂
+    </div>
+    <div class="card-back">
+      <p>
+        Happy Birthday, Begum! On your special day, I pray that all your dreams come true and that happiness follows you wherever you go. Even though we're apart right now, my thoughts and heart are always with you. Once again Happy Birthday, hamesha khush raho, Hamari raho, Hasti raho, hamary sath phansti raho 😁❤️.
+      </p>
+    </div>
   </div>
+</div>
+
 </body>
 </html>
