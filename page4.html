@@ -8,13 +8,12 @@
   margin: 0;
   padding: 0;
   background-image: url('https://raw.githubusercontent.com/ditta125/birthday-website/main/names_bg.jpg'); 
-      /* Replace with your actual image URL */
-  background-size: cover;
-  background-position: center;
+  background-size: contain; /* makes the full image visible */
   background-repeat: no-repeat;
+  background-position: center;
+  background-color: #000; /* fallback background if image doesn’t cover full screen */
   height: 100vh;
-  font-family: Arial, sans-serif; 
-    }
+  }  }
     .card-container {
   display: flex;
   justify-content: center;
