@@ -1,29 +1,148 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Happy Birthday</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://i.ibb.co/WyxzJYZ/red-roses.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #message {
+      position: absolute;
+      top: 35%;
+      width: 100%;
+      text-align: center;
+      font-size: 28px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      background: red;
+      position: absolute;
+      top: 100%;
+      animation: floatHeart 5s linear infinite;
+      transform: rotate(45deg);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: red;
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    #celebrateBtn,
+    #nextPageBtn {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #ff0055;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #celebrateBtn {
+      bottom: 80px;
+    }
+
+    #nextPageBtn {
+      bottom: 30px;
+    }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body class="page3">
-  <div class="red heart"></div>
-  <div class="container" id="birthdayMessage" style="display: none;">
-    <h2>Happy Birthday to the most beautiful person in my life</h2>
-    <button onclick="location.href='page4.html'">To Janam, Aagy Chalen</button>
+<body>
+
+  <div id="message">Happy Birthday to the Most Beautiful Person in my Life</div>
+
+  <button id="celebrateBtn">Celebrate</button>
+  <button id="nextPageBtn">Janam agy Chalen❤️</button>
+
   <script>
-  // Confetti triggers automatically after 2 seconds
-  setTimeout(() => {
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: { y: 0.6 }
+    // Show message after delay
+    setTimeout(() => {
+      document.getElementById('message').style.display = 'block';
+    }, 4000);
+
+    // Initial fireworks
+    setTimeout(() => {
+      launchFireworks();
+    }, 2000);
+
+    function launchFireworks() {
+      confetti({
+        particleCount: 100,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+    }
+
+    // Heart generation
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 300); // Floating hearts
+
+    document.getElementById("celebrateBtn").addEventListener("click", () => {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(launchFireworks, i * 300);
+      }
+      for (let i = 0; i < 20; i++) {
+        createHeart();
+      }
     });
-  }, 2000);
-</script>  
-  </div>
+
+    document.getElementById("nextPageBtn").addEventListener("click", () => {
+      window.location.href = "page4.html";
+    });
+  </script>
 </body>
 </html>
