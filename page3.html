@@ -91,7 +91,30 @@
       border-radius: 8px;
       cursor: pointer;
     }
+.float-image {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: 10;
+  animation: floatUp linear infinite;
+}
 
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
     #celebrateBtn {
       bottom: 80px;
     }
@@ -152,6 +175,27 @@
     document.getElementById("nextPageBtn").addEventListener("click", () => {
       window.location.href = "page4.html";
     });
+    <script>
+  const totalImages = 10;
+
+  for (let i = 1; i <= totalImages; i++) {
+    const img = document.createElement("img");
+    img.src = `images/image${i}.png`; // Change extension if needed
+    img.className = "float-image";
+    img.style.left = Math.random() * 100 + "vw";
+    img.style.animationDuration = (4 + Math.random() * 6) + "s";
+    img.style.top = "100vh";
+    document.body.appendChild(img);
+  }
+
+  setInterval(() => {
+    const allFloatingImages = document.querySelectorAll('.float-image');
+    allFloatingImages.forEach(img => {
+      img.style.left = Math.random() * 100 + "vw";
+      img.style.animationDuration = (4 + Math.random() * 6) + "s";
+    });
+  }, 7000);
+</script>
   </script>
 </body>
 </html>
